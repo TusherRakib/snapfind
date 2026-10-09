@@ -1,5 +1,5 @@
-import { loadDiscoveryFeed } from "@/features/discovery/composition/discoveryServices";
-import DiscoverScreen from "@/features/discovery/presentation/DiscoverScreen";
+import { loadDiscoveryFeed } from "@/features/discovery/di/discoveryDependencies";
+import DiscoverScreen from "@/features/discovery/presentation/screens/DiscoverScreen";
 
 export default function IndexScreen() {
   return <DiscoverScreen loadFeed={loadDiscoveryFeed} />;

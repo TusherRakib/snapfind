@@ -1,4 +1,7 @@
-import type { DiscoveryCategory, DiscoveryItem } from "../domain/models";
+import type {
+  DiscoveryCategory,
+  DiscoveryItem,
+} from "../entities/discoveryModels";
 
 export function filterDiscoveryItems(
   items: DiscoveryItem[],

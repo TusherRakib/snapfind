@@ -2,14 +2,17 @@ import { SymbolView } from "expo-symbols";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { filterDiscoveryItems } from "../application/filterDiscoveryItems";
-import type { LoadDiscoveryFeed } from "../application/loadDiscoveryFeed";
-import type { DiscoveryCategory, DiscoveryFeed } from "../domain/models";
-import CategoryFilters from "./components/CategoryFilters";
-import DiscoveryCard from "./components/DiscoveryCard";
-import FeaturedCollectionCard from "./components/FeaturedCollectionCard";
-import { styles } from "./discoverStyles";
-import { colors } from "./theme";
+import { filterDiscoveryItems } from "../../domain/useCases/filterDiscoveryItems";
+import type { LoadDiscoveryFeed } from "../../domain/useCases/loadDiscoveryFeed";
+import type {
+  DiscoveryCategory,
+  DiscoveryFeed,
+} from "../../domain/entities/discoveryModels";
+import CategoryFilters from "../components/CategoryFilters";
+import DiscoveryCard from "../components/DiscoveryCard";
+import FeaturedCollectionCard from "../components/FeaturedCollectionCard";
+import { styles } from "../discoverStyles";
+import { colors } from "../theme";
 
 interface DiscoverScreenProps {
   loadFeed: LoadDiscoveryFeed;

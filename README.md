@@ -41,25 +41,30 @@ npm run web
 
 The iOS command requires Xcode and an installed simulator runtime. Expo Go is used for the current UI unless the project later adds native modules that require a development build.
 
-## Project Structure
+## Architecture
 
 ```text
-app/                              Expo Router routes and layouts
-assets/                           App fonts and images
-components/                       Shared application components and hooks
-constants/                        Shared app constants
-features/discovery/domain/        Discovery models and repository contract
-features/discovery/application/   Feed loading and discovery filtering
-features/discovery/data/mock/     Mock feed and mock repository
-features/discovery/composition/   Repository and action wiring
-features/discovery/presentation/  Discovery screen, UI components, and styles
+app/                                      Expo Router routes and app composition
+shared/hooks/                             Platform-aware React Native hooks
+shared/theme/                             App-wide theme values
+shared/ui/                                Shared UI components
+features/discovery/domain/entities/       Discovery business models
+features/discovery/domain/repositories/   Repository contracts
+features/discovery/domain/useCases/       Feature actions and business rules
+features/discovery/data/dataSources/      Local or remote data sources
+features/discovery/data/repositories/     Repository implementations
+features/discovery/di/                    Feature dependency wiring
+features/discovery/presentation/screens/  Screen-level UI
+features/discovery/presentation/components/ Reusable feature UI
 ```
 
-Route files stay in `app/`. Feature behavior and presentation live outside the route tree so the route can remain a small composition point.
+This follows Clean Architecture with feature-first organization. The `app/` directory is the Expo Router equivalent of an app's route table; its route files stay thin and connect a screen to its dependencies. Domain entities, repository contracts, and use cases do not depend on React Native or data implementations. Data repositories implement domain contracts, while `di/` selects the current mock implementation.
+
+For Flutter terminology: domain entities and use cases map directly; repository interfaces are domain contracts; data sources and repository implementations belong to `data`; presentation screens/components are Flutter pages/widgets. React hooks hold screen-local state here, so the app does not require Provider, Riverpod, or Bloc for its current scope.
 
 ## Discovery Data and Future API
 
-`DiscoveryRepository` defines the data boundary for the discovery feature. `MockDiscoveryRepository` currently implements it with local sample content. When an API is available, add an HTTP repository that implements the same interface and select it in `features/discovery/composition/discoveryServices.ts`.
+`DiscoveryRepository` defines the data boundary for the discovery feature. `MockDiscoveryRepository` currently implements it with local sample content. When an API is available, add an HTTP repository that implements the same interface and select it in `features/discovery/di/discoveryDependencies.ts`.
 
 Keep the Express server in its own backend project or service. The mobile app should communicate with it through an HTTP API; do not import Express or server-only modules into the React Native bundle. Any `EXPO_PUBLIC_` environment variable is included in the client app and must not contain secrets.
 

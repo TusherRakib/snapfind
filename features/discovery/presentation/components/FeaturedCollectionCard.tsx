@@ -1,6 +1,6 @@
 import { SymbolView } from "expo-symbols";
 import { ImageBackground, Pressable, Text, View } from "react-native";
-import type { FeaturedCollection } from "../../domain/models";
+import type { FeaturedCollection } from "../../domain/entities/discoveryModels";
 import { styles } from "../discoverStyles";
 import { colors } from "../theme";
 

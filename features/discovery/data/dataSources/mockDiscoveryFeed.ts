@@ -1,6 +1,6 @@
-import type { DiscoveryFeed } from "../../domain/models";
+import type { DiscoveryFeed } from "../../domain/entities/discoveryModels";
 
-export const discoveryFeed: DiscoveryFeed = {
+export const mockDiscoveryFeed: DiscoveryFeed = {
   featured: {
     label: "THE SUNDAY EDIT",
     title: "A little more\nroom to breathe.",

@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, Text } from "react-native";
-import type { DiscoveryCategory } from "../../domain/models";
-import { discoveryCategories } from "../../domain/models";
+import type { DiscoveryCategory } from "../../domain/entities/discoveryModels";
+import { discoveryCategories } from "../../domain/entities/discoveryModels";
 import { styles } from "../discoverStyles";
 
 interface CategoryFiltersProps {

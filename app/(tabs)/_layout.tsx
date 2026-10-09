@@ -1,10 +1,8 @@
-import { Link, Tabs } from "expo-router";
+import { useClientOnlyValue } from "@/shared/hooks/useClientOnlyValue";
+import { useColorScheme } from "@/shared/hooks/useColorScheme";
+import Colors from "@/shared/theme/Colors";
+import { Tabs } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { Pressable } from "react-native";
-// import "../global.css";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-import { useColorScheme } from "@/components/useColorScheme";
-import Colors from "@/constants/Colors";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -34,26 +32,6 @@ export default function TabLayout() {
               size={28}
             />
           ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
-                {({ pressed }) => (
-                  <SymbolView
-                    name={{ ios: "info.circle", android: "info", web: "info" }}
-                    size={25}
-                    tintColor={Colors[colorScheme].text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          href: null,
         }}
       />
     </Tabs>
